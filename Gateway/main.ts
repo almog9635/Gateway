@@ -6,7 +6,8 @@ import userServiceRoutes from "./routes/user-service.ts";
 import groupServiceRoutes from "./routes/group-service.ts";
 import authenticationRoutes from "./routes/authentication.ts";
 import { logger } from "./consts.ts";
-import roleRouter from "./routes/roles.ts";
+import roleServiceRoutes from "./routes/role-service.ts";
+import debriefServiceRoutes from "./routes/debrief-service.ts";
 
 logger.info("Deno microservice is running on http://localhost:4000");
 const router = new Router();
@@ -23,7 +24,8 @@ app.use(oakCors({ origin: "http://localhost:5173" }));
 app.use(userServiceRoutes.routes());
 app.use(groupServiceRoutes.routes());
 app.use(authenticationRoutes.routes());
-app.use(roleRouter.routes());
+app.use(debriefServiceRoutes.routes());
+app.use(roleServiceRoutes.routes());
 app.use(router.routes);
 app.use(router.allowedMethods());
 

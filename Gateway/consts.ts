@@ -4,9 +4,7 @@ import { Context, Request as OakRequest } from "@oak/oak";
 export const logger = Logger.getLogger();
 
 export const fetcher = async (req: OakRequest, port: number) => {
-  try{
-    logger.info(req.hasBody);
-    
+  try{    
     if(req.hasBody === false || req.method === "DELETE") {
       
       return await fetch(`http://localhost:${port}${req.url.pathname}`, {

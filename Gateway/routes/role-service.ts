@@ -1,8 +1,8 @@
 import { Context, Router } from "@oak/oak";
 import { fetcher, logger, verifyJWTMiddleware } from "../consts.ts";
 
-const roleRouter = new Router();
-roleRouter
+const roleServiceRoutes = new Router();
+roleServiceRoutes
     .get("/roles", verifyJWTMiddleware, async (ctx: Context) =>{
         try{
             const response = await fetcher(ctx.request, 4001);
@@ -15,4 +15,4 @@ roleRouter
 
     });
 
-export default roleRouter;
+export default roleServiceRoutes;
