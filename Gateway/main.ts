@@ -8,6 +8,7 @@ import authenticationRoutes from "./routes/authentication.ts";
 import { logger } from "./consts.ts";
 import roleServiceRoutes from "./routes/role-service.ts";
 import debriefServiceRoutes from "./routes/debrief-service.ts";
+import taskServiceRoutes from "./routes/task-service.ts";
 
 logger.info("Deno microservice is running on http://localhost:4000");
 const router = new Router();
@@ -26,6 +27,7 @@ app.use(groupServiceRoutes.routes());
 app.use(authenticationRoutes.routes());
 app.use(debriefServiceRoutes.routes());
 app.use(roleServiceRoutes.routes());
+app.use(taskServiceRoutes.routes());
 app.use(router.routes);
 app.use(router.allowedMethods());
 

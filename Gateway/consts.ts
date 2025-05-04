@@ -3,17 +3,19 @@ import { Context, Request as OakRequest } from "@oak/oak";
 
 export const logger = Logger.getLogger();
 
+const endpoint = `http://host.docker.internal:`;
+
 export const fetcher = async (req: OakRequest, port: number) => {
   try{    
     if(req.hasBody === false || req.method === "DELETE") {
       
-      return await fetch(`http://localhost:${port}${req.url.pathname}`, {
+      return await fetch(`${endpoint}${port}${req.url.pathname}`, {
           method: req.method,
           headers: req.headers,
       });
     }
 
-    return await fetch(`http://localhost:${port}${req.url.pathname}`, {
+    return await fetch(`${endpoint}${port}${req.url.pathname}`, {
       method: req.method,
       headers: req.headers,
       body: JSON.stringify(await req.body.json()),
@@ -38,7 +40,7 @@ export const verifyJWTMiddleware = async (ctx: Context, next: () => Promise<unkn
       return;
     }
   
-    const response = await fetch("http://localhost:4002/verify-token", {
+    const response = await fetch(`${endpoint}4002/verify-token`, {
       method: "POST",
       headers: {
         Authorization: authHeader,
