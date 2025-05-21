@@ -3,6 +3,7 @@ import { Context, Request as OakRequest } from "@oak/oak";
 
 export const logger = Logger.getLogger();
 
+// when using docker change it to host.docker.internal:
 const endpoint = `http://host.docker.internal:`;
 
 export const fetcher = async (req: OakRequest, port: number) => {
